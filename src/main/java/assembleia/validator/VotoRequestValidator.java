@@ -4,6 +4,7 @@ import static java.util.Objects.isNull;
 
 import java.util.function.Consumer;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import assembleia.exception.DomainException;
@@ -16,6 +17,8 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 public class VotoRequestValidator implements Consumer<VotoRequest> {
 
+    private final CpfValidator cpfValidator;
+
     @Override
     public void accept(final VotoRequest request) {
 
@@ -27,7 +30,7 @@ public class VotoRequestValidator implements Consumer<VotoRequest> {
             throw new DomainException("Pauta inválida.");
         }
 
-        if (isNull(request.getCpf())) {
+        if (cpfValidator.isValid(request.getCpf())) {
             throw new DomainException("CPF inválido.");
         }
 

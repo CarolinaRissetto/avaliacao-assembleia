@@ -65,6 +65,13 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<!-- validação -->
+		<dependency>
+			<groupId>br.com.caelum.stella</groupId>
+			<artifactId>caelum-stella-core</artifactId>
+			<version>2.1.2</version>
+		</dependency>
 	</dependencies>
 
 	<build>
