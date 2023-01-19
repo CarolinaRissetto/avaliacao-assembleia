@@ -9,7 +9,7 @@ import {
 import { CadastrarPautaScreen } from './ui/screens/cadastrar-pauta/cadastrar-pauta';
 import { ChakraProvider } from '@chakra-ui/react'
 import { ListarPautasScreen } from './ui/screens/listar-pautas/listar-pautas';
-import { AbrirSessaoScreen } from './ui/screens/abrir-sessao/abrir-sessao';
+import { AbrirSessaoScreen } from './ui/screens/sessao-votacao/sessao-votacao';
 
 
 const router = createBrowserRouter([

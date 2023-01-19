@@ -21,7 +21,7 @@ export function ListarPautasScreen() {
     useEffect(() => { listar() }, [])
 
     function Pauta(pauta: PautaResponse) {
-        return <Card direction={{ base: 'column', sm: 'row' }}
+        return <Card key={`${pauta.id}-${pauta.descricao}`} direction={{ base: 'column', sm: 'row' }}
             overflow='hidden'
             variant='outline'
         >
@@ -33,7 +33,7 @@ export function ListarPautasScreen() {
                 </CardBody>
 
                 <CardFooter>
-                    <Button type="button" variant='solid' colorScheme='whatsapp' onClick={() => navigate("/abrir-sessao")}>
+                    <Button type="button" variant='solid' colorScheme='whatsapp' onClick={() => navigate("/abrir-sessao", {state:{pauta: pauta}})}>
                         Ver mais
                     </Button>
                 </CardFooter>
@@ -44,6 +44,9 @@ export function ListarPautasScreen() {
     return <div className='pagina'>
         <Center>
             <Heading padding={5} size={'lg'}>Pautas</Heading>
+            <Button type="button" variant='outline' colorScheme='whatsapp' onClick={() => navigate("/cadastrar-pauta")}>
+                Cadastrar nova pauta
+            </Button>
 
         </Center>
         <div>
