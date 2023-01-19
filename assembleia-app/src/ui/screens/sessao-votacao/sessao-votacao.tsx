@@ -1,4 +1,4 @@
-import { CardBody, InputGroup, InputRightElement, ButtonGroup, HStack, Divider, Stack, Text, CardFooter, Button, Card, Input } from "@chakra-ui/react";
+import { CardBody, InputGroup, InputRightElement, ButtonGroup, HStack, Divider, Stack, Text, CardFooter, Button, Card, Input, Alert, AlertIcon } from "@chakra-ui/react";
 import { useNavigate, useLocation } from 'react-router-dom';
 import { PautaResponse } from "../../../types/PautaResponse";
 import { FormEvent, useState } from 'react'
@@ -13,25 +13,39 @@ export function AbrirSessaoScreen() {
     const [loading, setLoading] = useState(false)
     const [duracao, setDuracao] = useState<number>(1);
     const [cpfAssociado, setCpfAssociado] = useState<string>("");
+    const [erro, setErro] = useState("")
 
 
-    async function onSubmit(event: FormEvent<HTMLFormElement>) {
+    async function onSubmitAbrirSessao(event: FormEvent<HTMLFormElement>) {
         event.preventDefault()
         setLoading(true)
-        await abrirSessao({ id: pauta.id, tempoDuracao: duracao })
+        const erro = await abrirSessao({ id: pauta.id, tempoDuracao: duracao })
+        if (erro) {
+            setErro(erro)
+        } else {
+            navigate("/")
+        }
         setLoading(false)
-        navigate("/")
     }
 
     async function onSubmitVoto(voto: boolean) {
         setLoading(true)
-        await votar({ idPauta: pauta.id, cpf: cpfAssociado, voto: voto })
+        const erro = await votar({ idPauta: pauta.id, cpf: cpfAssociado, voto: voto })
+        if (erro) {
+            setErro(erro)
+        } else {
+            navigate("/")
+        }
         setLoading(false)
-        navigate("/")
     }
 
     return <div className="pagina"><center><Card maxW='sm'>
         <CardBody>
+            {erro ? <Alert status='error'>
+                        <AlertIcon />
+                        {erro}
+                        </Alert>
+                : null}
             <Stack mt='6' spacing='3'>
                 <Text fontSize='20px' color='gray' as='i'>
                     Esta pauta teve {pauta.votoSim} votos a favor  e {pauta.votoNao} votos contra na ultima sessão.
@@ -65,7 +79,7 @@ export function AbrirSessaoScreen() {
                 </form>
                 <Divider borderColor='black' />
 
-                <form noValidate onSubmit={event => onSubmit(event)}>
+                <form noValidate onSubmit={event => onSubmitAbrirSessao(event)}>
                     <Stack direction='row' alignItems={'center'} paddingY='20px'>
                         <Input type={"number"} placeholder='tempo de sessao' width='max-content' value={duracao} onChange={event => setDuracao(event.target.valueAsNumber)} />
                         <Button isLoading={loading} type="submit" variant='outline' colorScheme='whatsapp'>

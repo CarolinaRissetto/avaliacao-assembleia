@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import { PautaResponse } from '../types/PautaResponse';
 
 interface cadastrarPautaRequest {
@@ -18,11 +18,11 @@ interface abrirSessaoRequest {
 
 const API = process.env.REACT_APP_API
 
-export async function cadastrarPauta(pauta: cadastrarPautaRequest): Promise<void> {
+export async function cadastrarPauta(pauta: cadastrarPautaRequest): Promise<string | void> {
     try {
         return await axios.post(API + "/cadastrar-pauta", pauta)
     } catch (error) {
-        console.error(error)
+        console.log(error)
     }
 }
 
@@ -34,19 +34,25 @@ export async function listarPautas() {
     }
 }
 
-export async function votar(votacao: votacaoRequest): Promise<void> {
+export async function votar(votacao: votacaoRequest): Promise<undefined | string> {
     try {
         return await axios.post(API + "/votar", votacao)
+
+        return undefined
     } catch (error) {
-        console.error(error)
+        const axiosError = error as AxiosError<string>
+        return axiosError?.response?.data
     }
 }
 
-export async function abrirSessao(sessaoVotacao: abrirSessaoRequest): Promise<void> {
+export async function abrirSessao(sessaoVotacao: abrirSessaoRequest): Promise<undefined | string> {
     try {
-        return await axios.post(API + "/abrir-sessao", sessaoVotacao)
+        await axios.post(API + "/abrir-sessao", sessaoVotacao)
+
+        return undefined
     } catch (error) {
-        console.error(error)
+        const axiosError = error as AxiosError<string>
+        return axiosError?.response?.data
     }
 }
 
