@@ -1,10 +1,13 @@
 package assembleia.web;
 
+import java.util.List;
+
 import org.springframework.web.bind.annotation.RequestBody;
 
 import assembleia.request.AberturaSessaoRequest;
 import assembleia.request.CadastroPautaRequest;
 import assembleia.request.VotoRequest;
+import assembleia.response.PautaResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -58,4 +61,11 @@ public interface AssembleiaApi {
     void votar(
         @Parameter(description = "Envia os dados necessários para votar.", required = true)
         @RequestBody final VotoRequest request);
+
+    @Operation(summary = "Operação buscar todas pautas.")
+    @ApiResponses({
+        @ApiResponse(responseCode = "200", description = "Operação realizada com sucesso."),
+        @ApiResponse(responseCode = "500", description = "Falha inesperada."),
+    })
+    List<PautaResponse> listarPautas();
 }

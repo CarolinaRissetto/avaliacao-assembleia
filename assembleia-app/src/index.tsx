@@ -1,15 +1,40 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
+import { CadastrarPautaScreen } from './ui/screens/cadastrar-pauta/cadastrar-pauta';
+import { ChakraProvider } from '@chakra-ui/react'
+import { ListarPautasScreen } from './ui/screens/listar-pautas/listar-pautas';
+import { AbrirSessaoScreen } from './ui/screens/abrir-sessao/abrir-sessao';
+
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <ListarPautasScreen />,
+  },
+  {
+    path: "/cadastrar-pauta",
+    element: <CadastrarPautaScreen />,
+  },
+  {
+    path: "/abrir-sessao",
+    element: <AbrirSessaoScreen />,
+  }
+]);
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <App />
+    <ChakraProvider>
+      <RouterProvider router={router} />
+    </ChakraProvider>
   </React.StrictMode>
 );
 

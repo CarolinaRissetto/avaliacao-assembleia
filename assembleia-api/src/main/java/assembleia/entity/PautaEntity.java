@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -48,7 +49,7 @@ public class PautaEntity {
     @Column(name = "tempo_duracao", length = 50)
     private Integer tempoDuracao;
 
-    @OneToMany(mappedBy="pauta")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy="pauta")
     @Column(name = "votos", length = 50)
     private List<VotoEntity> votos;
 }

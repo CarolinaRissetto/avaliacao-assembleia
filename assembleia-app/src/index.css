@@ -11,3 +11,13 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.pagina {
+  padding: 2%;
+  min-width: 100vw;
+  min-height: 100vh;
+}
+
+.votacao-input {
+  padding: 15px 15px 0 15px;
+}
