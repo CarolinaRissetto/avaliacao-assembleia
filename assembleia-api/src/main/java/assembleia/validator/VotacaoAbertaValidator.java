@@ -18,7 +18,7 @@ public class VotacaoAbertaValidator implements BiConsumer<PautaEntity, String> {
     @Override
     public void accept(final PautaEntity pautaEntity, String cpf) {
 
-        if (isNull(pautaEntity.getTempoDuracao())){
+        if (isNull(pautaEntity.getTempoDuracao())) {
             throw new DomainException("A sessão de votação não esta aberta.");
         }
 

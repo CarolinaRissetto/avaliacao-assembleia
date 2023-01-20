@@ -2,8 +2,8 @@ spring:
   datasource:
     driver-class-name: oracle.jdbc.driver.OracleDriver
     url: jdbc:oracle:thin:@localhost:1521:xe
-    username: ASSEMBLEIA
-    password: dsv
+    username: system
+    password: oracle
   jpa:
     show-sql: true
     generate-ddl: true

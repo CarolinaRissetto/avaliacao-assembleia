@@ -42,8 +42,7 @@ public class VotacaoServiceTest {
 
 
     @Test
-    public void deveSalvarAssociadoCasoNaoExista()
-    {
+    public void deveSalvarAssociadoCasoNaoExista() {
         final VotoRequest votoRequest = VotoRequest
             .builder()
             .cpf("72207630005")
@@ -61,8 +60,7 @@ public class VotacaoServiceTest {
     }
 
     @Test(expected = DomainException.class)
-    public void deveRetornarExceptionQuandoPautaNaoExistir()
-    {
+    public void deveRetornarExceptionQuandoPautaNaoExistir() {
         final VotoRequest votoRequest = VotoRequest
             .builder()
             .cpf("72207630005")
@@ -81,8 +79,7 @@ public class VotacaoServiceTest {
     }
 
     @Test
-    public void deveSalvarVoto()
-    {
+    public void deveSalvarVoto() {
         final VotoRequest votoRequest = VotoRequest
             .builder()
             .cpf("72207630005")

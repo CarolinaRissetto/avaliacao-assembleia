@@ -10,7 +10,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import assembleia.entity.PautaEntity;
@@ -30,8 +29,7 @@ public class SessaoVotacaoServiceTest {
     private SessaoVotacaoServiceValidator validator;
 
     @Test(expected = DomainException.class)
-    public void deveRetornarExceptionPautaNaoEncontrada()
-    {
+    public void deveRetornarExceptionPautaNaoEncontrada() {
         final AberturaSessaoRequest request = AberturaSessaoRequest.builder().build();
 
         when(repository.findById(request.getId())).thenReturn(Optional.empty());
@@ -40,8 +38,7 @@ public class SessaoVotacaoServiceTest {
     }
 
     @Test()
-    public void deveIniciarSessao()
-    {
+    public void deveIniciarSessao() {
         final AberturaSessaoRequest request = AberturaSessaoRequest.builder().tempoDuracao(5).build();
         final PautaEntity pautaEntity = PautaEntity.builder().build();
         when(repository.findById(request.getId())).thenReturn(Optional.of(pautaEntity));

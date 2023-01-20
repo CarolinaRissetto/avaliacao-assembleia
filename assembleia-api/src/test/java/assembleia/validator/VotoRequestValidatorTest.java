@@ -2,8 +2,6 @@ package assembleia.validator;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import assembleia.exception.DomainException;
@@ -12,15 +10,12 @@ import assembleia.request.VotoRequest;
 @RunWith(MockitoJUnitRunner.class)
 public class VotoRequestValidatorTest {
 
-    @InjectMocks
-    private VotoRequestValidator validator;
-
-    @Mock
-    private CpfValidator cpfValidator;
+    private CpfValidator cpfValidator = new CpfValidator();
+    private VotoRequestValidator validator = new VotoRequestValidator(cpfValidator);
 
     @Test
     public void deveValidarRequest() {
-        final VotoRequest request = VotoRequest.builder().voto(true).cpf("60274443040").idPauta(1l).build();
+        final VotoRequest request = VotoRequest.builder().voto(true).cpf("60002526093").idPauta(1l).build();
 
         validator.accept(request);
     }
