@@ -40,7 +40,7 @@ public class PautaEntity {
     @Column(name = "id", nullable = false, length = 10)
     private Long id;
 
-    @Column(name = "nome", nullable = false, length = 255)
+    @Column(name = "nome", nullable = false, length = 2000)
     private String descricao;
 
     @Column(name = "data_hora_abertura_sessao", length = 50)

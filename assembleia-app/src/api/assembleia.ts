@@ -20,7 +20,7 @@ const API = process.env.REACT_APP_API
 
 export async function cadastrarPauta(pauta: cadastrarPautaRequest): Promise<string | void> {
     try {
-        return await axios.post(API + "/cadastrar-pauta", pauta)
+        await axios.post(API + "/cadastrar-pauta", pauta)
     } catch (error) {
         console.log(error)
     }
@@ -36,7 +36,7 @@ export async function listarPautas() {
 
 export async function votar(votacao: votacaoRequest): Promise<undefined | string> {
     try {
-        return await axios.post(API + "/votar", votacao)
+        await axios.post(API + "/votar", votacao)
 
         return undefined
     } catch (error) {

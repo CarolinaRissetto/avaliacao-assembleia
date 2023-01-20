@@ -1,5 +1,7 @@
 package assembleia.validator;
 
+import static java.util.Objects.isNull;
+
 import java.time.LocalDateTime;
 import java.util.function.BiConsumer;
 
@@ -15,6 +17,10 @@ public class VotacaoAbertaValidator implements BiConsumer<PautaEntity, String> {
 
     @Override
     public void accept(final PautaEntity pautaEntity, String cpf) {
+
+        if (isNull(pautaEntity.getTempoDuracao())){
+            throw new DomainException("A sessão de votação não esta aberta.");
+        }
 
         final LocalDateTime horaExpiracaoVotacao = pautaEntity.getDataHoraAberturaSessao()
             .plusMinutes(pautaEntity.getTempoDuracao());

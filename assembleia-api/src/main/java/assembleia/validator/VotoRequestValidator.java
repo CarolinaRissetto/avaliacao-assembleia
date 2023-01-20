@@ -29,7 +29,7 @@ public class VotoRequestValidator implements Consumer<VotoRequest> {
             throw new DomainException("Pauta inválida.");
         }
 
-        if (cpfValidator.isValid(request.getCpf())) {
+        if (!cpfValidator.isValid(request.getCpf())) {
             throw new DomainException("CPF inválido.");
         }
 

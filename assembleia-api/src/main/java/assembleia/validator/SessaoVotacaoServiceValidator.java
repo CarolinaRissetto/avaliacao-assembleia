@@ -34,7 +34,7 @@ public class SessaoVotacaoServiceValidator implements BiConsumer<AberturaSessaoR
             throw new DomainException("Tempo de duração inválido.");
         }
 
-        if (nonNull(pautaEntity.getTempoDuracao())) {
+        if (nonNull(pautaEntity.getTempoDuracao()) && nonNull(pautaEntity.getDataHoraAberturaSessao())) {
 
             final LocalDateTime horaExpiracaoVotacao = pautaEntity.getDataHoraAberturaSessao()
                 .plusMinutes(pautaEntity.getTempoDuracao());
