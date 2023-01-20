@@ -15,7 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 public class CadastraPautaService {
 
-    private  final PautaRepository repository;
+    private final PautaRepository repository;
     private final CadastroPautaRequestValidator validator;
 
     public void cadastrar(final CadastroPautaRequest request) {

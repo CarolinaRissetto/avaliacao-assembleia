@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import assembleia.entity.PautaEntity;
 import assembleia.request.AberturaSessaoRequest;
 import assembleia.request.CadastroPautaRequest;
 import assembleia.request.VotoRequest;
@@ -22,7 +21,7 @@ import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
-public class AssembleiaController implements AssembleiaApi{
+public class AssembleiaController implements AssembleiaApi {
 
     private final CadastraPautaService cadastraPautaService;
     private final SessaoVotacaoService sessaoVotacaoService;

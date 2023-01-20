@@ -4,7 +4,6 @@ import static java.util.Objects.isNull;
 
 import java.util.function.Consumer;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import assembleia.exception.DomainException;

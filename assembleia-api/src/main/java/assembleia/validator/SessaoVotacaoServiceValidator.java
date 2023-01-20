@@ -30,7 +30,7 @@ public class SessaoVotacaoServiceValidator implements BiConsumer<AberturaSessaoR
             throw new DomainException("Pauta Inválida.");
         }
 
-        if (isNull(request.getTempoDuracao())) {
+        if (isNull(request.getTempoDuracao()) || request.getTempoDuracao() <= 0) {
             throw new DomainException("Tempo de duração inválido.");
         }
 

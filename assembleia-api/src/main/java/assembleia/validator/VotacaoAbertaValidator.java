@@ -20,7 +20,6 @@ public class VotacaoAbertaValidator implements BiConsumer<PautaEntity, String> {
             .plusMinutes(pautaEntity.getTempoDuracao());
 
         if (LocalDateTime.now().isAfter(horaExpiracaoVotacao)) {
-
             throw new DomainException("A sessão de votação ja foi fechada.");
         }
 

@@ -1,6 +1,5 @@
 package assembleia.entity;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -13,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -49,7 +49,7 @@ public class PautaEntity {
     @Column(name = "tempo_duracao", length = 50)
     private Integer tempoDuracao;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy="pauta")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "pauta")
     @Column(name = "votos", length = 50)
     private List<VotoEntity> votos;
 }

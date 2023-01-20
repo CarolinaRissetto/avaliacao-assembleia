@@ -8,8 +8,8 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 @EnableConfigurationProperties
 public class AssembleiaApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(AssembleiaApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(AssembleiaApplication.class, args);
+    }
 
 }

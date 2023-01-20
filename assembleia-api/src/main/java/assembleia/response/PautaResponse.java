@@ -7,12 +7,11 @@ import assembleia.entity.PautaEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import lombok.Setter;
 
 @Getter
 @RequiredArgsConstructor
 @Builder
-public  final class PautaResponse {
+public final class PautaResponse {
 
     private final Long id;
 
@@ -26,8 +25,7 @@ public  final class PautaResponse {
 
     private final int votoNao;
 
-    public static PautaResponse fromEntity(PautaEntity entity)
-    {
+    public static PautaResponse fromEntity(PautaEntity entity) {
         return PautaResponse
             .builder()
             .id(entity.getId())
