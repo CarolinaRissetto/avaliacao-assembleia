@@ -1,0 +1,61 @@
+version: '3.4'
+services:
+  api:
+    image: api
+    container_name: api
+    build:
+      context: ./assembleia-api
+      dockerfile: Dockerfile
+    environment:
+      - TZ=UTC-3
+      - SERVER_PORT=9082
+      - SPRING_DATASOURCE_USERNAME=system
+      - SPRING_DATASOURCE_PASSWORD=oracle
+      - SPRING_DATASOURCE_URL=jdbc:oracle:thin:@oracle_db:1521:xe
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+    ports:
+      - '9082:9082'
+    networks:
+      - app
+    depends_on:
+      oracle_db:
+        condition: service_started
+      
+  front:
+    image: front
+    container_name: front
+    build:
+      context: ./assembleia-app
+      dockerfile: Dockerfile
+    environment:
+      - REACT_APP_API=http://api:9082
+    ports:
+      - '3000:3000'
+    networks:
+      - app
+    depends_on:
+      api:
+        condition: service_started
+
+  oracle_db:
+    image: konnecteam/docker-oracle-xe-11g
+    container_name: oracle-db
+    environment:
+      USERNAME: system
+      PASSWORD: oracle
+      TZ: UTC-3
+    ports:
+      - "22:22"
+      - "1521:1521"
+    volumes:
+      - 'db_volume:/oracle'
+    networks:
+      - app
+
+volumes:
+  db_volume:
+    driver: local
+
+networks:
+  app:
+    driver: bridge
